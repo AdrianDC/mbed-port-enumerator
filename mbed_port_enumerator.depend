@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1486255059 source:c:\users\adrian dc\desktop\mbed_port_enumerator\main.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
