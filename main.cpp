@@ -22,6 +22,7 @@
 #define WMIC_ENTITIES "wmic path Win32_PnPEntity"
 #define WMIC_CAPTION "mbed"
 #define WMIC_NAME "Serial Port (COM"
+#define CMD_HIDE_STDERR "2>&1"
 
 // Entrypoint
 int main()
@@ -34,7 +35,8 @@ int main()
 
     // Request matching COM ports list
     buffer = popen(WMIC_ENTITIES " Where \"Caption LIKE '%%" WMIC_CAPTION
-            " %%' AND Name LIKE '%%" WMIC_NAME "%%'\" GET Name", "r");
+            " %%' AND Name LIKE '%%" WMIC_NAME "%%'\" GET Name "
+            CMD_HIDE_STDERR, "r");
 
     // Read buffer output
     while (fgets(output, sizeof(output), buffer) != NULL) {
