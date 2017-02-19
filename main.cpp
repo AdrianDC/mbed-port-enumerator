@@ -32,6 +32,7 @@ int main()
     size_t len;
     char output[40];
     char* port;
+    bool spacer = false;
 
     // Request matching COM ports list
     buffer = popen(WMIC_ENTITIES " Where \"Caption LIKE '%%" WMIC_CAPTION
@@ -44,15 +45,18 @@ int main()
         // Filter header lines
         if (strstr(output, WMIC_NAME) != NULL) {
 
+            // Spacer for multiple COM ports
+            if (spacer) {
+                printf(" ");
+            }
+            spacer = true;
+
             // Parse ...(COM?)...
             port = strstr(output, "(") + 1;
             len = (strstr(output, ")") - port);
 
             // Output found COM port
             printf("%.*s", len, port);
-
-            // Ignore next COM ports
-            break;
         }
     }
 
