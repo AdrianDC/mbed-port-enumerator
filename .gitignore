@@ -1,4 +1,6 @@
 bin
 obj
 putty.exe
+mbed-port-enumerator.depend
 mbed-port-enumerator.exe
+mbed-port-enumerator.layout
