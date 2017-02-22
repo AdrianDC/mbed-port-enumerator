@@ -13,7 +13,11 @@ if not exist "%PUTTY%" (
   exit
 )
 
-for /f %%i in ('%MBED_ENUMERATOR%') do set COM_PORT=%%i
+for /f "tokens=*" %%i in ('%MBED_ENUMERATOR%') do (
+  set COM_PORT=%%i
+)
 echo Found MBED connected on '%COM_PORT%'
 
-start "" "%PUTTY%" -serial %COM_PORT%
+for %%a in (%COM_PORT%) do (
+  start "" "%PUTTY%" -serial %%a
+)
